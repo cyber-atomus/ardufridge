@@ -100,12 +100,14 @@ void SetupDisplay() {
     tft.setCursor(10,115);
     tft.setTextColor(BLUE);
     tft.setTextSize(1);
-    tft.println("Temp. zamrazarki");
+    tft.print("Temp. ");
+    tft.println(nazwa_czujnik1);
 // temp2
     tft.setCursor(180,115);
     tft.setTextColor(CYAN);
     tft.setTextSize(1);
-    tft.println("Temp. chlodziarki");
+    tft.print("Temp. ");
+    tft.println(nazwa_czujnik2);
 }
 
 // Aktualizuje na LCD min/max monitorowane wartosci

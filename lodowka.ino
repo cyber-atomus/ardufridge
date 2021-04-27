@@ -155,12 +155,24 @@ void loop() {
 // pseudo threading ;)
 
   if((ticker - tickerPamiecTEMP ) >= 1000UL) {
+#if (SENSOR1 ==  ANALOG)
     temperaturaRaw = getTemperatureRaw(ANALOG_IN);
     temperatura = convertTemperature(temperaturaRaw);
-  
+#elif (SENSOR1 = DIGITAL)
+    temperatura = getTemperatureDIG(czujnik1);
+#else
+    temperatura = -255;
+#endif
+
+#if (SENSOR2 ==  ANALOG)
     temperaturaRaw2 = getTemperatureRaw(ANALOG_IN2);
     temperatura2 = convertTemperature(temperaturaRaw2);
-    
+#elif (SENSOR2 = DIGITAL)
+    temperatura2 = getTemperatureDIG(czujnik2);
+#else
+    temperatura2 = -255;
+#endif
+
     tickerPamiecTEMP =  ticker;
   }
   
@@ -211,9 +223,9 @@ void kompresorLoop() {
 
 void serialJSON() {
   Serial.print("{ \"czujniki\": {");
-  spitJSON(temperatura, temperaturaRaw, "1", "zamrazarka");
+  spitJSON(temperatura, temperaturaRaw, "1", nazwa_czujnik1);
   Serial.print(",");
-  spitJSON(temperatura2, temperaturaRaw2, "2", "komora");
+  spitJSON(temperatura2, temperaturaRaw2, "2", nazwa_czujnik2);
   Serial.print("}, \"stats\": { ");
   Serial.print("\"runtime\": ");
   Serial.print(runtime);

@@ -18,15 +18,36 @@
 #define PRZYCISK_A 2
 #define PRZYCISK_B 3
 
-#define ANALOG_IN A0
-#define ANALOG_IN2 A1
-
-#define SLEEP_SEC 10
-
 // undefine/zahashuj i logo wyłączone
 #define BOOT_LOGO
 
+// jakie czujniki uzywane?
+// ANALOG - piny ponizej ANALOG_IN/ANALOG_IN2
+// DIGITAL - 1wire, nalezy ustawic adresy czujnik1 czujnik2
+//
+#define SENSOR1 ANALOG
+#define SENSOR2 DIGITAL
+
+// wejscia czujnikow analogowych
+#define ANALOG_IN A0
+#define ANALOG_IN2 A1
+
+//adresy czujnikow 1wire
 byte czujnik1[8] = {0x28, 0xB1, 0x6D, 0xA1, 0x3, 0x0, 0x0, 0x11};
+byte czujnik2[8] = {0x28, 0xB1, 0x6D, 0xA1, 0x3, 0x0, 0x0, 0x12};
+
+String nazwa_czujnik1="zamrazarka";
+String nazwa_czujnik2="komora";
+
+//
+// koniec definicji czujnikow
+//
+// nic takiego
+//
+#define SLEEP_SEC 10
+
+
+
 const byte relay = 2; 
 
 
